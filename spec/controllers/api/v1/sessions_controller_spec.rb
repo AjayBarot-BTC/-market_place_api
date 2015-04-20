@@ -32,7 +32,6 @@ describe Api::V1::SessionsController do
       it { should respond_with 422 }
     end
   end
-
   describe "DELETE #destroy" do
 
     before(:each) do
