@@ -21,16 +21,6 @@ RSpec.configure do |config|
   # config.mock_with :flexmock
   # config.mock_with :rr
 
-  config.include Request::JsonHelpers, :type => :controller
-
-  config.include Request::HeadersHelpers, :type => :controller
-
-  config.include Devise::TestHelpers, :type => :controller
-
-  config.before(:each, type: :controller) do
-    include_default_accept_headers
-  end
-
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -50,18 +40,13 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
-  # RSpec Rails can automatically mix in different behaviours to your tests
-  # based on their file location, for example enabling you to call `get` and
-  # `post` in specs under `spec/controllers`.
-  #
-  # You can disable this behaviour by removing the line below, and instead
-  # explictly tag your specs with their type, e.g.:
-  #
-  #     describe UsersController, :type => :controller do
-  #       # ...
-  #     end
-  #
-  # The different available types are documented in the features, such as in
-  # https://relishapp.com/rspec/rspec-rails/v/3-0/docs
-  config.infer_spec_type_from_file_location!
+  #Including to test requests
+  config.include Request::JsonHelpers, :type => :controller
+  config.include Request::HeadersHelpers, :type => :controller
+  config.include Devise::TestHelpers, :type => :controller
+  
+
+  config.before(:each, type: :controller) do
+    include_default_accept_headers
+  end
 end
